@@ -13,6 +13,7 @@ final class DriverLoadingStateMachine {
     enum State {
         case unloaded
         case activating
+        case deactivating
         case needsApproval
         case activated
         case activationError
@@ -22,10 +23,11 @@ final class DriverLoadingStateMachine {
     enum Event {
         case activationStarted
         case promptForApproval
-        case activationFinished
-        case activationFailed
+        case requestFinished
+        case requestFailed
         case checkStarted
         case propertiesFound
+        case deactivationStarted
     }
 
     static func process(_ state: State, _ event: Event) -> State {
@@ -35,9 +37,11 @@ final class DriverLoadingStateMachine {
             switch event {
             case .activationStarted:
                 return .activating
+            case .deactivationStarted:
+                return .deactivating
             case .checkStarted:
                 return .checking
-            case .promptForApproval, .activationFinished, .activationFailed:
+            case .promptForApproval, .requestFinished, .requestFailed:
                 return .activationError
             case .propertiesFound:
                 return .activated
@@ -47,11 +51,30 @@ final class DriverLoadingStateMachine {
             switch event {
             case .activationStarted:
                 return .activating
+            case .deactivationStarted:
+                return .deactivating
             case .promptForApproval:
                 return .needsApproval
-            case .activationFinished:
+            case .requestFinished:
                 return .activated
-            case .activationFailed:
+            case .requestFailed:
+                return .activationError
+            case .checkStarted:
+                return .checking
+            case .propertiesFound:
+                return .activated
+            }
+        case .deactivating:
+            switch event {
+            case .activationStarted:
+                return .activating
+            case .deactivationStarted:
+                return .deactivating
+            case .promptForApproval:
+                return .needsApproval
+            case .requestFinished:
+                return .unloaded
+            case .requestFailed:
                 return .activationError
             case .checkStarted:
                 return .checking
@@ -63,9 +86,11 @@ final class DriverLoadingStateMachine {
             switch event {
             case .activationStarted:
                 return .activating
-            case .promptForApproval, .activationFailed:
+            case .deactivationStarted:
+                return .deactivating
+            case .promptForApproval, .requestFailed:
                 return .activationError
-            case .activationFinished:
+            case .requestFinished:
                 return .activated
             case .checkStarted:
                 return .checking
@@ -77,7 +102,9 @@ final class DriverLoadingStateMachine {
             switch event {
             case .activationStarted:
                 return .activating
-            case .promptForApproval, .activationFinished, .activationFailed:
+            case .deactivationStarted:
+                return .deactivating
+            case .promptForApproval, .requestFinished, .requestFailed:
                 return .activationError
             case .checkStarted:
                 return .checking
@@ -89,9 +116,11 @@ final class DriverLoadingStateMachine {
             switch event {
             case .activationStarted:
                 return .activating
-            case .promptForApproval, .activationFinished:
+            case .deactivationStarted:
+                return .deactivating
+            case .promptForApproval, .requestFinished:
                 return .activationError
-            case .activationFailed:
+            case .requestFailed:
                 return .unloaded
             case .checkStarted:
                 return .checking
@@ -123,6 +152,8 @@ class MainViewModel: NSObject,ObservableObject  {
             return "driver has experienced an error during activation.\nPlease check the logs to find the error."
         case .checking:
             return "Trying to find driver in system"
+        case .deactivating:
+            return "Deactivating driver"
         }
     }
 
@@ -148,6 +179,8 @@ class MainViewModel: NSObject,ObservableObject  {
         let request = OSSystemExtensionRequest.deactivationRequest(forExtensionWithIdentifier: dextIdentifier, queue: .main)
         request.delegate = self
         OSSystemExtensionManager.shared.submitRequest(request)
+
+        state = DriverLoadingStateMachine.process(state, .deactivationStarted)
 
         // Update your state machine with deactivation states and process that change here
     }
@@ -200,7 +233,7 @@ extension MainViewModel: OSSystemExtensionRequestDelegate {
         // The "result" may be "willCompleteAfterReboot", which would require another state.
         // This sample ignores this state for simplicity, but a production app should check for it.
 
-        state = DriverLoadingStateMachine.process(state, .activationFinished)
+        state = DriverLoadingStateMachine.process(state, .requestFinished)
     }
 
     func request(_ request: OSSystemExtensionRequest, didFailWithError error: Error) {
@@ -213,12 +246,12 @@ extension MainViewModel: OSSystemExtensionRequestDelegate {
 
         // While this app only logs errors, production apps should provide feedback to customers about any errors encountered while loading the dext.
 
-        state = DriverLoadingStateMachine.process(state, .activationFailed)
+        state = DriverLoadingStateMachine.process(state, .requestFailed)
     }
 
     func request(_ request: OSSystemExtensionRequest, foundProperties properties: [OSSystemExtensionProperties]) {
         print("sysex foundProperties \(properties)")
 
-        state = DriverLoadingStateMachine.process(state, !properties.isEmpty ? .propertiesFound : .activationFailed )
+        state = DriverLoadingStateMachine.process(state, !properties.isEmpty ? .propertiesFound : .requestFailed )
     }
 }
