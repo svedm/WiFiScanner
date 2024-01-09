@@ -1,0 +1,21 @@
+//
+//  WiFiScannerDriver.iig
+//  WiFiScannerDriver
+//
+//  Created by Svetoslav on 10.01.2024.
+//
+
+#ifndef WiFiScannerDriver_h
+#define WiFiScannerDriver_h
+
+#include <Availability.h>
+#include <DriverKit/IOService.iig>
+
+class WiFiScannerDriver: public IOService
+{
+public:
+    virtual kern_return_t
+    Start(IOService * provider) override;
+};
+
+#endif /* WiFiScannerDriver_h */
