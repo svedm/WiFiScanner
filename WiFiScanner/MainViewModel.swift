@@ -132,13 +132,14 @@ final class DriverLoadingStateMachine {
     }
 }
 
-class MainViewModel: NSObject,ObservableObject  {
+final class MainViewModel: NSObject, ObservableObject {
 
     // Your dext may not start in unloaded state every time. Add logic or states to check this.
     @Published var state: DriverLoadingStateMachine.State = .unloaded
+    @Published var connected = false
 
     private let dextIdentifier = "net.svedm.WiFiScanner.WiFiScannerDriver"
-    private let serviceName = "WiFiScannerDriver"
+    private let driverService = DriverService()
 
     public var dextLoadingState: String {
         switch state {
@@ -157,6 +158,10 @@ class MainViewModel: NSObject,ObservableObject  {
         case .deactivating:
             return "Deactivating driver"
         }
+    }
+
+    override init() {
+        super.init()
     }
 
     func activateMyDext() {
@@ -196,22 +201,17 @@ class MainViewModel: NSObject,ObservableObject  {
         state = DriverLoadingStateMachine.process(state, .checkStarted)
     }
 
-    private var connection: io_connect_t = 0
-
     func connectToClient() {
-        let service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceNameMatching(serviceName))
-        os_log("Service finding result %d", service)
+        connected = driverService.connectToClient()
+    }
 
-        guard service != 0 else { return }
+    func communicate() {
+        driverService.communicate()
+    }
 
-        var result = IOServiceOpen(service, mach_task_self_, 0, &connection)
-
-        print("Service opened with result \(String(cString: mach_error_string(result)))")
-
-        if result == kIOReturnSuccess {
-            var result = IOServiceClose(connection)
-            print("Service closed with result \(String(cString: mach_error_string(result)))")
-        }
+    func disconnect() {
+        driverService.disconnect()
+        connected = false
     }
 }
 

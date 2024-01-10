@@ -36,13 +36,30 @@ struct MainView: View {
                             Text("Uninstall Dext")
                         }
                     )
-                    Button(
-                        action: {
-                            viewModel.connectToClient()
-                        }, label: {
-                            Text("Connect to driver")
-                        }
-                    )
+                    if !viewModel.connected {
+                        Button(
+                            action: {
+                                viewModel.connectToClient()
+                            }, label: {
+                                Text("Connect to driver")
+                            }
+                        )
+                    } else {
+                        Button(
+                            action: {
+                                viewModel.communicate()
+                            }, label: {
+                                Text("Communicate")
+                            }
+                        )
+                        Button(
+                            action: {
+                                viewModel.disconnect()
+                            }, label: {
+                                Text("Disconnect")
+                            }
+                        )
+                    }
                 }
             }
         }

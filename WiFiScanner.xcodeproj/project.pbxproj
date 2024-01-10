@@ -19,6 +19,8 @@
 		79B5E6CF2B4EA5FE0094FA58 /* USBDriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5E6CE2B4EA5FE0094FA58 /* USBDriverKit.framework */; };
 		79B5E6D02B4EA64B0094FA58 /* WiFiScannerDriverClient.iig in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6C72B4EA34C0094FA58 /* WiFiScannerDriverClient.iig */; };
 		79B5E6D12B4EA64E0094FA58 /* WiFiScannerDriverClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6C82B4EA3650094FA58 /* WiFiScannerDriverClient.cpp */; };
+		79B5E6D82B4ED1E70094FA58 /* Communication.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B5E6D72B4ED1E70094FA58 /* Communication.h */; };
+		79B5E6DA2B4F11150094FA58 /* DriverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6D92B4F11150094FA58 /* DriverService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		79B5E6CC2B4EA5FB0094FA58 /* DriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DriverKit.framework; path = Platforms/DriverKit.platform/Developer/SDKs/DriverKit.sdk/System/DriverKit/System/Library/Frameworks/DriverKit.framework; sourceTree = DEVELOPER_DIR; };
 		79B5E6CE2B4EA5FE0094FA58 /* USBDriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = USBDriverKit.framework; path = Platforms/DriverKit.platform/Developer/SDKs/DriverKit.sdk/System/DriverKit/System/Library/Frameworks/USBDriverKit.framework; sourceTree = DEVELOPER_DIR; };
 		79B5E6D22B4EAF620094FA58 /* WiFiScanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WiFiScanner-Bridging-Header.h"; sourceTree = "<group>"; };
+		79B5E6D72B4ED1E70094FA58 /* Communication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Communication.h; sourceTree = "<group>"; };
+		79B5E6D92B4F11150094FA58 /* DriverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 		7952DD092B4DF4B100D01801 = {
 			isa = PBXGroup;
 			children = (
+				79B5E6D62B4ED1BE0094FA58 /* Common */,
 				7952DD142B4DF4B100D01801 /* WiFiScanner */,
 				7952DD2D2B4DF55700D01801 /* WiFiScannerDriver */,
 				7952DD2A2B4DF55700D01801 /* Frameworks */,
@@ -111,6 +116,7 @@
 				7952DD152B4DF4B100D01801 /* WiFiScannerApp.swift */,
 				7952DD172B4DF4B100D01801 /* MainView.swift */,
 				79B5E6C32B4DFC3A0094FA58 /* MainViewModel.swift */,
+				79B5E6D92B4F11150094FA58 /* DriverService.swift */,
 				7952DD192B4DF4B200D01801 /* Assets.xcassets */,
 				7952DD1B2B4DF4B200D01801 /* WiFiScanner.entitlements */,
 				7952DD1C2B4DF4B200D01801 /* Preview Content */,
@@ -150,6 +156,14 @@
 			path = WiFiScannerDriver;
 			sourceTree = "<group>";
 		};
+		79B5E6D62B4ED1BE0094FA58 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				79B5E6D72B4ED1E70094FA58 /* Communication.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -157,6 +171,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79B5E6D82B4ED1E70094FA58 /* Communication.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +280,7 @@
 				7952DD182B4DF4B100D01801 /* MainView.swift in Sources */,
 				7952DD162B4DF4B100D01801 /* WiFiScannerApp.swift in Sources */,
 				79B5E6C42B4DFC3A0094FA58 /* MainViewModel.swift in Sources */,
+				79B5E6DA2B4F11150094FA58 /* DriverService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
