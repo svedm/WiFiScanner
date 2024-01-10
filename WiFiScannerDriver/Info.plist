@@ -30,9 +30,16 @@
 			<integer>1</integer>
 			<key>bcdDevice</key>
 			<integer>256</integer>
+			<key>UserClientProperties</key>
+			<dict>
+				<key>IOClass</key>
+				<string>IOUserUserClient</string>
+				<key>IOUserClass</key>
+				<string>WiFiScannerDriverClient</string>
+			</dict>
 		</dict>
 	</dict>
 	<key>OSBundleUsageDescription</key>
-	<string></string>
+	<string>qweqweasdasd</string>
 </dict>
 </plist>

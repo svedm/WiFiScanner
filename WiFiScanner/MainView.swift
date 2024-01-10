@@ -36,6 +36,13 @@ struct MainView: View {
                             Text("Uninstall Dext")
                         }
                     )
+                    Button(
+                        action: {
+                            viewModel.connectToClient()
+                        }, label: {
+                            Text("Connect to driver")
+                        }
+                    )
                 }
             }
         }

@@ -7,6 +7,7 @@
 
 import Foundation
 import SystemExtensions
+import OSLog
 
 final class DriverLoadingStateMachine {
 
@@ -136,7 +137,8 @@ class MainViewModel: NSObject,ObservableObject  {
     // Your dext may not start in unloaded state every time. Add logic or states to check this.
     @Published var state: DriverLoadingStateMachine.State = .unloaded
 
-    private let dextIdentifier: String = "net.svedm.WiFiScanner.WiFiScannerDriver"
+    private let dextIdentifier = "net.svedm.WiFiScanner.WiFiScannerDriver"
+    private let serviceName = "WiFiScannerDriver"
 
     public var dextLoadingState: String {
         switch state {
@@ -173,10 +175,10 @@ class MainViewModel: NSObject,ObservableObject  {
         state = DriverLoadingStateMachine.process(state, .activationStarted)
     }
 
-    // This method isn't used in this example, but is provided for completeness.
     func deactivateExtension() {
 
-        let request = OSSystemExtensionRequest.deactivationRequest(forExtensionWithIdentifier: dextIdentifier, queue: .main)
+        let request = OSSystemExtensionRequest
+            .deactivationRequest(forExtensionWithIdentifier: dextIdentifier, queue: .main)
         request.delegate = self
         OSSystemExtensionManager.shared.submitRequest(request)
 
@@ -193,17 +195,37 @@ class MainViewModel: NSObject,ObservableObject  {
 
         state = DriverLoadingStateMachine.process(state, .checkStarted)
     }
+
+    private var connection: io_connect_t = 0
+
+    func connectToClient() {
+        let service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceNameMatching(serviceName))
+        os_log("Service finding result %d", service)
+
+        guard service != 0 else { return }
+
+        var result = IOServiceOpen(service, mach_task_self_, 0, &connection)
+
+        print("Service opened with result \(String(cString: mach_error_string(result)))")
+
+        if result == kIOReturnSuccess {
+            var result = IOServiceClose(connection)
+            print("Service closed with result \(String(cString: mach_error_string(result)))")
+        }
+    }
 }
 
 extension MainViewModel: OSSystemExtensionRequestDelegate {
 
-    func request(_ request: OSSystemExtensionRequest,
-                 actionForReplacingExtension existing: OSSystemExtensionProperties,
-                 withExtension ext: OSSystemExtensionProperties) -> OSSystemExtensionRequest.ReplacementAction {
+    func request(
+        _ request: OSSystemExtensionRequest,
+         actionForReplacingExtension existing: OSSystemExtensionProperties,
+         withExtension ext: OSSystemExtensionProperties
+    ) -> OSSystemExtensionRequest.ReplacementAction {
 
         var replacementAction: OSSystemExtensionRequest.ReplacementAction
 
-        print("sysex actionForReplacingExtension: %@ %@", existing, ext)
+        os_log("sysex actionForReplacingExtension: %@ %@", existing, ext)
 
         // Add appropriate logic here to determine if the extension should be
         // replaced by the new extension. Common things to check for include
@@ -220,15 +242,13 @@ extension MainViewModel: OSSystemExtensionRequestDelegate {
     }
 
     func requestNeedsUserApproval(_ request: OSSystemExtensionRequest) {
-
-        print("sysex requestNeedsUserApproval")
+        os_log("sysex requestNeedsUserApproval")
 
         state = DriverLoadingStateMachine.process(state, .promptForApproval)
     }
 
     func request(_ request: OSSystemExtensionRequest, didFinishWithResult result: OSSystemExtensionRequest.Result) {
-
-        print("sysex didFinishWithResult: %d", result.rawValue)
+        os_log("sysex didFinishWithResult: %d", result.rawValue)
 
         // The "result" may be "willCompleteAfterReboot", which would require another state.
         // This sample ignores this state for simplicity, but a production app should check for it.
@@ -237,8 +257,7 @@ extension MainViewModel: OSSystemExtensionRequestDelegate {
     }
 
     func request(_ request: OSSystemExtensionRequest, didFailWithError error: Error) {
-
-        print("sysex didFailWithError: %@", error.localizedDescription)
+        os_log("sysex didFailWithError: %@", error.localizedDescription)
 
         // Some possible errors to check for:
         // Error 4: The dext identifier string in the code needs to match the one used in the project settings.
@@ -250,7 +269,7 @@ extension MainViewModel: OSSystemExtensionRequestDelegate {
     }
 
     func request(_ request: OSSystemExtensionRequest, foundProperties properties: [OSSystemExtensionProperties]) {
-        print("sysex foundProperties \(properties)")
+        os_log("sysex foundProperties \(properties)")
 
         state = DriverLoadingStateMachine.process(state, !properties.isEmpty ? .propertiesFound : .requestFailed )
     }

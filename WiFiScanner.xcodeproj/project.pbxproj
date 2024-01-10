@@ -11,11 +11,14 @@
 		7952DD182B4DF4B100D01801 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7952DD172B4DF4B100D01801 /* MainView.swift */; };
 		7952DD1A2B4DF4B200D01801 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7952DD192B4DF4B200D01801 /* Assets.xcassets */; };
 		7952DD1E2B4DF4B200D01801 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7952DD1D2B4DF4B200D01801 /* Preview Assets.xcassets */; };
-		7952DD2C2B4DF55700D01801 /* DriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7952DD2B2B4DF55700D01801 /* DriverKit.framework */; };
 		7952DD2F2B4DF55700D01801 /* WiFiScannerDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7952DD2E2B4DF55700D01801 /* WiFiScannerDriver.cpp */; };
-		7952DD312B4DF55700D01801 /* WiFiScannerDriver.iig in Sources */ = {isa = PBXBuildFile; fileRef = 7952DD302B4DF55700D01801 /* WiFiScannerDriver.iig */; };
 		7952DD352B4DF55700D01801 /* net.svedm.WiFiScanner.WiFiScannerDriver.dext in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 7952DD292B4DF55700D01801 /* net.svedm.WiFiScanner.WiFiScannerDriver.dext */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		79B5E6C42B4DFC3A0094FA58 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6C32B4DFC3A0094FA58 /* MainViewModel.swift */; };
+		79B5E6CA2B4EA4EF0094FA58 /* WiFiScannerDriver.iig in Sources */ = {isa = PBXBuildFile; fileRef = 7952DD302B4DF55700D01801 /* WiFiScannerDriver.iig */; };
+		79B5E6CD2B4EA5FB0094FA58 /* DriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5E6CC2B4EA5FB0094FA58 /* DriverKit.framework */; };
+		79B5E6CF2B4EA5FE0094FA58 /* USBDriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5E6CE2B4EA5FE0094FA58 /* USBDriverKit.framework */; };
+		79B5E6D02B4EA64B0094FA58 /* WiFiScannerDriverClient.iig in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6C72B4EA34C0094FA58 /* WiFiScannerDriverClient.iig */; };
+		79B5E6D12B4EA64E0094FA58 /* WiFiScannerDriverClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6C82B4EA3650094FA58 /* WiFiScannerDriverClient.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,11 @@
 		7952DD322B4DF55700D01801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7952DD3A2B4DF97100D01801 /* WiFiScannerDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WiFiScannerDriver.entitlements; sourceTree = "<group>"; };
 		79B5E6C32B4DFC3A0094FA58 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		79B5E6C72B4EA34C0094FA58 /* WiFiScannerDriverClient.iig */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.iig; path = WiFiScannerDriverClient.iig; sourceTree = "<group>"; };
+		79B5E6C82B4EA3650094FA58 /* WiFiScannerDriverClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WiFiScannerDriverClient.cpp; sourceTree = "<group>"; };
+		79B5E6CC2B4EA5FB0094FA58 /* DriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DriverKit.framework; path = Platforms/DriverKit.platform/Developer/SDKs/DriverKit.sdk/System/DriverKit/System/Library/Frameworks/DriverKit.framework; sourceTree = DEVELOPER_DIR; };
+		79B5E6CE2B4EA5FE0094FA58 /* USBDriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = USBDriverKit.framework; path = Platforms/DriverKit.platform/Developer/SDKs/DriverKit.sdk/System/DriverKit/System/Library/Frameworks/USBDriverKit.framework; sourceTree = DEVELOPER_DIR; };
+		79B5E6D22B4EAF620094FA58 /* WiFiScanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WiFiScanner-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7952DD2C2B4DF55700D01801 /* DriverKit.framework in Frameworks */,
+				79B5E6CF2B4EA5FE0094FA58 /* USBDriverKit.framework in Frameworks */,
+				79B5E6CD2B4EA5FB0094FA58 /* DriverKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +114,7 @@
 				7952DD192B4DF4B200D01801 /* Assets.xcassets */,
 				7952DD1B2B4DF4B200D01801 /* WiFiScanner.entitlements */,
 				7952DD1C2B4DF4B200D01801 /* Preview Content */,
+				79B5E6D22B4EAF620094FA58 /* WiFiScanner-Bridging-Header.h */,
 			);
 			path = WiFiScanner;
 			sourceTree = "<group>";
@@ -120,6 +130,8 @@
 		7952DD2A2B4DF55700D01801 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				79B5E6CE2B4EA5FE0094FA58 /* USBDriverKit.framework */,
+				79B5E6CC2B4EA5FB0094FA58 /* DriverKit.framework */,
 				7952DD2B2B4DF55700D01801 /* DriverKit.framework */,
 			);
 			name = Frameworks;
@@ -129,8 +141,10 @@
 			isa = PBXGroup;
 			children = (
 				7952DD3A2B4DF97100D01801 /* WiFiScannerDriver.entitlements */,
-				7952DD2E2B4DF55700D01801 /* WiFiScannerDriver.cpp */,
 				7952DD302B4DF55700D01801 /* WiFiScannerDriver.iig */,
+				7952DD2E2B4DF55700D01801 /* WiFiScannerDriver.cpp */,
+				79B5E6C72B4EA34C0094FA58 /* WiFiScannerDriverClient.iig */,
+				79B5E6C82B4EA3650094FA58 /* WiFiScannerDriverClient.cpp */,
 				7952DD322B4DF55700D01801 /* Info.plist */,
 			);
 			path = WiFiScannerDriver;
@@ -198,6 +212,7 @@
 				TargetAttributes = {
 					7952DD112B4DF4B100D01801 = {
 						CreatedOnToolsVersion = 15.1;
+						LastSwiftMigration = 1510;
 					};
 					7952DD282B4DF55700D01801 = {
 						CreatedOnToolsVersion = 15.1;
@@ -257,8 +272,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79B5E6D12B4EA64E0094FA58 /* WiFiScannerDriverClient.cpp in Sources */,
 				7952DD2F2B4DF55700D01801 /* WiFiScannerDriver.cpp in Sources */,
-				7952DD312B4DF55700D01801 /* WiFiScannerDriver.iig in Sources */,
+				79B5E6CA2B4EA4EF0094FA58 /* WiFiScannerDriver.iig in Sources */,
+				79B5E6D02B4EA64B0094FA58 /* WiFiScannerDriverClient.iig in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +409,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WiFiScanner/WiFiScanner.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WiFiScanner/Preview Content\"";
@@ -421,6 +440,8 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WiFiScanner/WiFiScanner-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -430,7 +451,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WiFiScanner/WiFiScanner.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WiFiScanner/Preview Content\"";
@@ -459,6 +482,7 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WiFiScanner/WiFiScanner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -466,7 +490,9 @@
 		7952DD372B4DF55700D01801 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AD_HOC_CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_ENTITLEMENTS = WiFiScannerDriver/WiFiScannerDriver.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6WCU73Y7FL;
@@ -486,7 +512,9 @@
 		7952DD382B4DF55700D01801 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AD_HOC_CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_ENTITLEMENTS = WiFiScannerDriver/WiFiScannerDriver.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6WCU73Y7FL;

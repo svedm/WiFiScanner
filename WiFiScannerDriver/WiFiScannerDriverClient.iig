@@ -1,0 +1,22 @@
+//
+//  WiFiScannerDriverClient.iig
+//  WiFiScanner
+//
+//  Created by Svetoslav Karasev on 10.01.2024.
+//
+
+#ifndef WiFiScannerDriverClient_h
+#define WiFiScannerDriverClient_h
+
+#include <Availability.h>
+#include <DriverKit/IOUserClient.iig>
+
+class WiFiScannerDriverClient: public IOUserClient {
+public:
+    virtual bool init(void) override;
+    virtual kern_return_t Start(IOService* provider) override;
+    virtual kern_return_t Stop(IOService* provider) override;
+    virtual void free(void) override;
+};
+
+#endif /* WiFiScannerDriverClient_h */
