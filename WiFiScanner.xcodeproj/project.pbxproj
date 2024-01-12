@@ -188,19 +188,19 @@
 			isa = PBXGroup;
 			children = (
 				79B5E6E42B5190B30094FA58 /* iOS */,
-				79B5E6E32B5190AB0094FA58 /* MacOS */,
+				79B5E6E32B5190AB0094FA58 /* macOS */,
 				79B5E6E02B517B250094FA58 /* NetworkListItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		79B5E6E32B5190AB0094FA58 /* MacOS */ = {
+		79B5E6E32B5190AB0094FA58 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
 				79B5E6C32B4DFC3A0094FA58 /* MainViewModel+macOS.swift */,
 				7952DD172B4DF4B100D01801 /* MainView+macOS.swift */,
 			);
-			path = MacOS;
+			path = macOS;
 			sourceTree = "<group>";
 		};
 		79B5E6E42B5190B30094FA58 /* iOS */ = {
