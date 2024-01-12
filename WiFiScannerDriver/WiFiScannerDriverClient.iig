@@ -31,6 +31,10 @@ public:
                                                   uint64_t *options,
                                                   IOMemoryDescriptor **memory
                                                   ) override;
+private:
+    void callAsyncCompletion(void* result) LOCALONLY;
+    void sendScanRequest() LOCALONLY;
+    void readResponse() LOCALONLY;
 };
 
 #endif /* WiFiScannerDriverClient_h */

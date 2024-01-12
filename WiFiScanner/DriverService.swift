@@ -16,10 +16,14 @@ final class DriverService {
     private var connection: io_connect_t = 0
     private var asyncRef: io_async_ref64_t = (0, 0, 0, 0, 0, 0, 0, 0)
     private var sharedMemoryAddress: mach_vm_address_t = 0
+    private var sharedMemorySize: mach_vm_size_t = 0
 
     private let notificationPort = IONotificationPortCreate(kIOMainPortDefault)
     private lazy var machNotificationPort = IONotificationPortGetMachPort(notificationPort)
     private lazy var runLoopSource = IONotificationPortGetRunLoopSource(notificationPort)
+
+    private var receivedData = Data()
+    private var continuation: CheckedContinuation<[WiFiNetwork], Never>?
 
     // You can't use self from c callback
     private static var newDataNotifications: [NewDataAction] = []
@@ -30,7 +34,9 @@ final class DriverService {
         _ args: UnsafeMutablePointer<UnsafeMutableRawPointer?>?,
         _ numArgs: UInt32
     ) -> Void in
-        DriverService.newDataNotifications.forEach { $0() }
+        Task.detached(priority: .userInitiated) {
+            DriverService.newDataNotifications.forEach { $0() }
+        }
     }
 
     init() {
@@ -48,7 +54,7 @@ final class DriverService {
 
         guard service != 0 else { return false }
 
-        var result = IOServiceOpen(service, mach_task_self_, 0, &connection)
+        let result = IOServiceOpen(service, mach_task_self_, 0, &connection)
 
         IOObjectRelease(service)
 
@@ -65,8 +71,13 @@ final class DriverService {
         return true
     }
 
-    func communicate() {
-        getDataFromDriver()
+    func scanForNetworks() async -> [WiFiNetwork] {
+        receivedData = .init()
+        sendCommand(MessageType_Scan)
+
+        return await withCheckedContinuation { [weak self] (continuation: CheckedContinuation<[WiFiNetwork], Never>) in
+            self?.continuation = continuation
+        }
     }
 
     func disconnect() {
@@ -118,13 +129,12 @@ final class DriverService {
     }
 
     private func setupSharedMemory() {
-        var memSize: mach_vm_size_t = 0
         let result = IOConnectMapMemory64(
             connection,
             0,
             mach_task_self_,
             &sharedMemoryAddress,
-            &memSize,
+            &sharedMemorySize,
             kIOMapAnywhere
         )
         if result != kIOReturnSuccess {
@@ -132,7 +142,7 @@ final class DriverService {
         }
     }
 
-    private func getDataFromDriver() {
+    private func sendCommand(_ command: UInt32) {
         var inputStruct = CommunicationData()
         let inputSize = MemoryLayout<CommunicationData>.size
 
@@ -140,7 +150,7 @@ final class DriverService {
             ptr.withMemoryRebound(to: UInt64.self, capacity: MemoryLayout<UInt64>.size) { asyncPtr in
                 let result = IOConnectCallAsyncStructMethod(
                     connection,
-                    MessageType_Scan,
+                    command,
                     machNotificationPort,
                     asyncPtr,
                     UInt32(kIOAsyncCalloutCount),
@@ -155,10 +165,34 @@ final class DriverService {
         }
     }
 
-
-
     private func readNewData() {
-        let ptr = UnsafeMutablePointer<BufferData>(bitPattern: Int(sharedMemoryAddress))
-        print("Received count: \(ptr?.pointee.size)")
+        guard 
+            var sharedMemoryData = UnsafeMutablePointer<BufferData>(bitPattern: Int(sharedMemoryAddress))?.pointee
+        else { return }
+
+        os_log("\(sharedMemoryData.size) bytes received")
+
+        var last = false
+
+        if sharedMemoryData.size != 0 {
+            let array = withUnsafeBytes(of: &sharedMemoryData.bytes) { buf in
+                [UInt8](buf)
+            }
+            last = array[sharedMemoryData.size-1 ] == 0b11111111 // stop byte
+            let size = last ? sharedMemoryData.size - 1 : sharedMemoryData.size
+
+            receivedData.append(contentsOf: Array(array[0..<size]))
+        }
+
+        if !last {
+            sendCommand(MessageType_Read_Response)
+        } else {
+            let networksList = receivedData.withUnsafeBytes { ptr in
+                ptr.bindMemory(to: wifi_network.self)
+            }.compactMap { WiFiNetwork(network: $0) }
+
+            continuation?.resume(with: .success(networksList))
+        }
     }
 }
+

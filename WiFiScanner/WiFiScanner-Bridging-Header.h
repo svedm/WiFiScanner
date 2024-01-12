@@ -3,4 +3,5 @@
 //
 
 #include <IOKit/IOKitLib.h>
+#include "wifi.h"
 #include "../Common/Communication.h"

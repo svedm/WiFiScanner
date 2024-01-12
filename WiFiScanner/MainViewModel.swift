@@ -132,11 +132,14 @@ final class DriverLoadingStateMachine {
     }
 }
 
+@MainActor
 final class MainViewModel: NSObject, ObservableObject {
 
     // Your dext may not start in unloaded state every time. Add logic or states to check this.
     @Published var state: DriverLoadingStateMachine.State = .unloaded
     @Published var connected = false
+    @Published var networks: [WiFiNetwork] = []
+    @Published var isScanning = false
 
     private let dextIdentifier = "net.svedm.WiFiScanner.WiFiScannerDriver"
     private let driverService = DriverService()
@@ -205,8 +208,10 @@ final class MainViewModel: NSObject, ObservableObject {
         connected = driverService.connectToClient()
     }
 
-    func communicate() {
-        driverService.communicate()
+    func communicate() async {
+        isScanning = true
+        networks = await self.driverService.scanForNetworks()
+        isScanning = false
     }
 
     func disconnect() {

@@ -47,11 +47,12 @@ struct MainView: View {
                     } else {
                         Button(
                             action: {
-                                viewModel.communicate()
+                                Task { await viewModel.communicate() }
                             }, label: {
-                                Text("Communicate")
+                                Text("Scan networks")
                             }
                         )
+                        .disabled(viewModel.isScanning)
                         Button(
                             action: {
                                 viewModel.disconnect()
@@ -62,8 +63,10 @@ struct MainView: View {
                     }
                 }
             }
+            List(viewModel.networks) { network in
+                NetworkListItem(network: network)
+            }
         }
-        .frame(width: 500, height: 200, alignment: .center)
         .onAppear {
             viewModel.checkDextState()
         }

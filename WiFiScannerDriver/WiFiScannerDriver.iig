@@ -14,9 +14,19 @@
 class WiFiScannerDriver: public IOService
 {
 public:
-    virtual kern_return_t
-    Start(IOService * provider) override;
+    virtual bool init(void) override;
+    virtual kern_return_t Start(IOService * provider) override;
+    virtual kern_return_t Stop(IOService* provider) override;
+    virtual void free(void) override;
+
     virtual kern_return_t NewUserClient(uint32_t type, IOUserClient** userClient) override;
+
+protected:
+    kern_return_t openDevice() LOCALONLY;
+    kern_return_t closeDevice() LOCALONLY;
+    kern_return_t writeToPipe(OSData *data) LOCALONLY;
+    kern_return_t readFromPipe(IOMemoryDescriptor* buffer, uint32_t* bytesTransferred) LOCALONLY;
+    uint16_t getMaxPacketSize() LOCALONLY;
 };
 
 #endif /* WiFiScannerDriver_h */

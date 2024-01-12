@@ -21,6 +21,9 @@
 		79B5E6D12B4EA64E0094FA58 /* WiFiScannerDriverClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6C82B4EA3650094FA58 /* WiFiScannerDriverClient.cpp */; };
 		79B5E6D82B4ED1E70094FA58 /* Communication.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B5E6D72B4ED1E70094FA58 /* Communication.h */; };
 		79B5E6DA2B4F11150094FA58 /* DriverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6D92B4F11150094FA58 /* DriverService.swift */; };
+		79B5E6DC2B4F3BAF0094FA58 /* IOBufferMemoryDescriptorUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B5E6DB2B4F3BAC0094FA58 /* IOBufferMemoryDescriptorUtility.h */; };
+		79B5E6DF2B5076510094FA58 /* WiFiNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6DE2B5076510094FA58 /* WiFiNetwork.swift */; };
+		79B5E6E12B517B250094FA58 /* NetworkListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6E02B517B250094FA58 /* NetworkListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,10 @@
 		79B5E6D22B4EAF620094FA58 /* WiFiScanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WiFiScanner-Bridging-Header.h"; sourceTree = "<group>"; };
 		79B5E6D72B4ED1E70094FA58 /* Communication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Communication.h; sourceTree = "<group>"; };
 		79B5E6D92B4F11150094FA58 /* DriverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverService.swift; sourceTree = "<group>"; };
+		79B5E6DB2B4F3BAC0094FA58 /* IOBufferMemoryDescriptorUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOBufferMemoryDescriptorUtility.h; sourceTree = "<group>"; };
+		79B5E6DD2B5069950094FA58 /* wifi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wifi.h; sourceTree = "<group>"; };
+		79B5E6DE2B5076510094FA58 /* WiFiNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiNetwork.swift; sourceTree = "<group>"; };
+		79B5E6E02B517B250094FA58 /* NetworkListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,12 +122,15 @@
 			children = (
 				7952DD152B4DF4B100D01801 /* WiFiScannerApp.swift */,
 				7952DD172B4DF4B100D01801 /* MainView.swift */,
+				79B5E6E02B517B250094FA58 /* NetworkListItem.swift */,
 				79B5E6C32B4DFC3A0094FA58 /* MainViewModel.swift */,
 				79B5E6D92B4F11150094FA58 /* DriverService.swift */,
+				79B5E6DE2B5076510094FA58 /* WiFiNetwork.swift */,
 				7952DD192B4DF4B200D01801 /* Assets.xcassets */,
 				7952DD1B2B4DF4B200D01801 /* WiFiScanner.entitlements */,
 				7952DD1C2B4DF4B200D01801 /* Preview Content */,
 				79B5E6D22B4EAF620094FA58 /* WiFiScanner-Bridging-Header.h */,
+				79B5E6DD2B5069950094FA58 /* wifi.h */,
 			);
 			path = WiFiScanner;
 			sourceTree = "<group>";
@@ -149,6 +159,7 @@
 				7952DD3A2B4DF97100D01801 /* WiFiScannerDriver.entitlements */,
 				7952DD302B4DF55700D01801 /* WiFiScannerDriver.iig */,
 				7952DD2E2B4DF55700D01801 /* WiFiScannerDriver.cpp */,
+				79B5E6DB2B4F3BAC0094FA58 /* IOBufferMemoryDescriptorUtility.h */,
 				79B5E6C72B4EA34C0094FA58 /* WiFiScannerDriverClient.iig */,
 				79B5E6C82B4EA3650094FA58 /* WiFiScannerDriverClient.cpp */,
 				7952DD322B4DF55700D01801 /* Info.plist */,
@@ -172,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79B5E6D82B4ED1E70094FA58 /* Communication.h in Headers */,
+				79B5E6DC2B4F3BAF0094FA58 /* IOBufferMemoryDescriptorUtility.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,8 +289,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79B5E6DF2B5076510094FA58 /* WiFiNetwork.swift in Sources */,
 				7952DD182B4DF4B100D01801 /* MainView.swift in Sources */,
 				7952DD162B4DF4B100D01801 /* WiFiScannerApp.swift in Sources */,
+				79B5E6E12B517B250094FA58 /* NetworkListItem.swift in Sources */,
 				79B5E6C42B4DFC3A0094FA58 /* MainViewModel.swift in Sources */,
 				79B5E6DA2B4F11150094FA58 /* DriverService.swift in Sources */,
 			);
