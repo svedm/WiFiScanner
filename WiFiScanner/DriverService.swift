@@ -47,6 +47,9 @@ final class DriverService {
         Self.newDataNotifications = []
     }
 
+    func isAvailable() -> Bool {
+        IOServiceGetMatchingService(kIOMainPortDefault, IOServiceNameMatching(serviceName)) != 0
+    }
 
     func connectToClient() -> Bool {
         let service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceNameMatching(serviceName))

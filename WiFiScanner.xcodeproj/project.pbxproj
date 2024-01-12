@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		7952DD162B4DF4B100D01801 /* WiFiScannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7952DD152B4DF4B100D01801 /* WiFiScannerApp.swift */; };
-		7952DD182B4DF4B100D01801 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7952DD172B4DF4B100D01801 /* MainView.swift */; };
+		7952DD182B4DF4B100D01801 /* MainView+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7952DD172B4DF4B100D01801 /* MainView+macOS.swift */; platformFilters = (macos, ); };
 		7952DD1A2B4DF4B200D01801 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7952DD192B4DF4B200D01801 /* Assets.xcassets */; };
 		7952DD1E2B4DF4B200D01801 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7952DD1D2B4DF4B200D01801 /* Preview Assets.xcassets */; };
 		7952DD2F2B4DF55700D01801 /* WiFiScannerDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7952DD2E2B4DF55700D01801 /* WiFiScannerDriver.cpp */; };
 		7952DD352B4DF55700D01801 /* net.svedm.WiFiScanner.WiFiScannerDriver.dext in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 7952DD292B4DF55700D01801 /* net.svedm.WiFiScanner.WiFiScannerDriver.dext */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		79B5E6C42B4DFC3A0094FA58 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6C32B4DFC3A0094FA58 /* MainViewModel.swift */; };
+		79B5E6C42B4DFC3A0094FA58 /* MainViewModel+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6C32B4DFC3A0094FA58 /* MainViewModel+macOS.swift */; platformFilters = (macos, ); };
 		79B5E6CA2B4EA4EF0094FA58 /* WiFiScannerDriver.iig in Sources */ = {isa = PBXBuildFile; fileRef = 7952DD302B4DF55700D01801 /* WiFiScannerDriver.iig */; };
 		79B5E6CD2B4EA5FB0094FA58 /* DriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5E6CC2B4EA5FB0094FA58 /* DriverKit.framework */; };
 		79B5E6CF2B4EA5FE0094FA58 /* USBDriverKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5E6CE2B4EA5FE0094FA58 /* USBDriverKit.framework */; };
@@ -24,6 +24,10 @@
 		79B5E6DC2B4F3BAF0094FA58 /* IOBufferMemoryDescriptorUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B5E6DB2B4F3BAC0094FA58 /* IOBufferMemoryDescriptorUtility.h */; };
 		79B5E6DF2B5076510094FA58 /* WiFiNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6DE2B5076510094FA58 /* WiFiNetwork.swift */; };
 		79B5E6E12B517B250094FA58 /* NetworkListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6E02B517B250094FA58 /* NetworkListItem.swift */; };
+		79B5E6E72B5191430094FA58 /* MainView+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6E52B5191430094FA58 /* MainView+iOS.swift */; platformFilter = ios; };
+		79B5E6E82B5191430094FA58 /* MainViewModel+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5E6E62B5191430094FA58 /* MainViewModel+iOS.swift */; platformFilter = ios; };
+		79B5E6EA2B51965B0094FA58 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B5E6E92B51965B0094FA58 /* IOKit.framework */; };
+		79B5E6EC2B51982A0094FA58 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 79B5E6EB2B51982A0094FA58 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +57,7 @@
 /* Begin PBXFileReference section */
 		7952DD122B4DF4B100D01801 /* WiFiScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiFiScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7952DD152B4DF4B100D01801 /* WiFiScannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiScannerApp.swift; sourceTree = "<group>"; };
-		7952DD172B4DF4B100D01801 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		7952DD172B4DF4B100D01801 /* MainView+macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainView+macOS.swift"; sourceTree = "<group>"; };
 		7952DD192B4DF4B200D01801 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7952DD1B2B4DF4B200D01801 /* WiFiScanner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WiFiScanner.entitlements; sourceTree = "<group>"; };
 		7952DD1D2B4DF4B200D01801 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -63,7 +67,7 @@
 		7952DD302B4DF55700D01801 /* WiFiScannerDriver.iig */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.iig; path = WiFiScannerDriver.iig; sourceTree = "<group>"; };
 		7952DD322B4DF55700D01801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7952DD3A2B4DF97100D01801 /* WiFiScannerDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WiFiScannerDriver.entitlements; sourceTree = "<group>"; };
-		79B5E6C32B4DFC3A0094FA58 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		79B5E6C32B4DFC3A0094FA58 /* MainViewModel+macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewModel+macOS.swift"; sourceTree = "<group>"; };
 		79B5E6C72B4EA34C0094FA58 /* WiFiScannerDriverClient.iig */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.iig; path = WiFiScannerDriverClient.iig; sourceTree = "<group>"; };
 		79B5E6C82B4EA3650094FA58 /* WiFiScannerDriverClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WiFiScannerDriverClient.cpp; sourceTree = "<group>"; };
 		79B5E6CC2B4EA5FB0094FA58 /* DriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DriverKit.framework; path = Platforms/DriverKit.platform/Developer/SDKs/DriverKit.sdk/System/DriverKit/System/Library/Frameworks/DriverKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -75,6 +79,10 @@
 		79B5E6DD2B5069950094FA58 /* wifi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wifi.h; sourceTree = "<group>"; };
 		79B5E6DE2B5076510094FA58 /* WiFiNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiNetwork.swift; sourceTree = "<group>"; };
 		79B5E6E02B517B250094FA58 /* NetworkListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkListItem.swift; sourceTree = "<group>"; };
+		79B5E6E52B5191430094FA58 /* MainView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainView+iOS.swift"; sourceTree = "<group>"; };
+		79B5E6E62B5191430094FA58 /* MainViewModel+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewModel+iOS.swift"; sourceTree = "<group>"; };
+		79B5E6E92B51965B0094FA58 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
+		79B5E6EB2B51982A0094FA58 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79B5E6EA2B51965B0094FA58 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,10 +129,8 @@
 		7952DD142B4DF4B100D01801 /* WiFiScanner */ = {
 			isa = PBXGroup;
 			children = (
+				79B5E6E22B5190750094FA58 /* View */,
 				7952DD152B4DF4B100D01801 /* WiFiScannerApp.swift */,
-				7952DD172B4DF4B100D01801 /* MainView.swift */,
-				79B5E6E02B517B250094FA58 /* NetworkListItem.swift */,
-				79B5E6C32B4DFC3A0094FA58 /* MainViewModel.swift */,
 				79B5E6D92B4F11150094FA58 /* DriverService.swift */,
 				79B5E6DE2B5076510094FA58 /* WiFiNetwork.swift */,
 				7952DD192B4DF4B200D01801 /* Assets.xcassets */,
@@ -131,6 +138,7 @@
 				7952DD1C2B4DF4B200D01801 /* Preview Content */,
 				79B5E6D22B4EAF620094FA58 /* WiFiScanner-Bridging-Header.h */,
 				79B5E6DD2B5069950094FA58 /* wifi.h */,
+				79B5E6EB2B51982A0094FA58 /* Settings.bundle */,
 			);
 			path = WiFiScanner;
 			sourceTree = "<group>";
@@ -146,6 +154,7 @@
 		7952DD2A2B4DF55700D01801 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				79B5E6E92B51965B0094FA58 /* IOKit.framework */,
 				79B5E6CE2B4EA5FE0094FA58 /* USBDriverKit.framework */,
 				79B5E6CC2B4EA5FB0094FA58 /* DriverKit.framework */,
 				7952DD2B2B4DF55700D01801 /* DriverKit.framework */,
@@ -173,6 +182,34 @@
 				79B5E6D72B4ED1E70094FA58 /* Communication.h */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		79B5E6E22B5190750094FA58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				79B5E6E42B5190B30094FA58 /* iOS */,
+				79B5E6E32B5190AB0094FA58 /* MacOS */,
+				79B5E6E02B517B250094FA58 /* NetworkListItem.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		79B5E6E32B5190AB0094FA58 /* MacOS */ = {
+			isa = PBXGroup;
+			children = (
+				79B5E6C32B4DFC3A0094FA58 /* MainViewModel+macOS.swift */,
+				7952DD172B4DF4B100D01801 /* MainView+macOS.swift */,
+			);
+			path = MacOS;
+			sourceTree = "<group>";
+		};
+		79B5E6E42B5190B30094FA58 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				79B5E6E52B5191430094FA58 /* MainView+iOS.swift */,
+				79B5E6E62B5191430094FA58 /* MainViewModel+iOS.swift */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7952DD1E2B4DF4B200D01801 /* Preview Assets.xcassets in Resources */,
+				79B5E6EC2B51982A0094FA58 /* Settings.bundle in Resources */,
 				7952DD1A2B4DF4B200D01801 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,10 +328,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				79B5E6DF2B5076510094FA58 /* WiFiNetwork.swift in Sources */,
-				7952DD182B4DF4B100D01801 /* MainView.swift in Sources */,
+				79B5E6E82B5191430094FA58 /* MainViewModel+iOS.swift in Sources */,
+				7952DD182B4DF4B100D01801 /* MainView+macOS.swift in Sources */,
 				7952DD162B4DF4B100D01801 /* WiFiScannerApp.swift in Sources */,
 				79B5E6E12B517B250094FA58 /* NetworkListItem.swift in Sources */,
-				79B5E6C42B4DFC3A0094FA58 /* MainViewModel.swift in Sources */,
+				79B5E6E72B5191430094FA58 /* MainView+iOS.swift in Sources */,
+				79B5E6C42B4DFC3A0094FA58 /* MainViewModel+macOS.swift in Sources */,
 				79B5E6DA2B4F11150094FA58 /* DriverService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,7 +499,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -467,12 +507,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.svedm.WiFiScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WiFiScanner/WiFiScanner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -483,7 +524,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WiFiScanner/WiFiScanner.entitlements;
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WiFiScanner/Preview Content\"";
@@ -501,7 +541,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -509,11 +549,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.svedm.WiFiScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "WiFiScanner/WiFiScanner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
