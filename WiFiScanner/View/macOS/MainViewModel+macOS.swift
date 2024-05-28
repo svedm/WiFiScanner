@@ -175,8 +175,7 @@ final class MainViewModel: NSObject, ObservableObject {
     func activateExtension(_ dextIdentifier: String) {
 
         let request = OSSystemExtensionRequest
-            .activationRequest(forExtensionWithIdentifier: dextIdentifier,
-                               queue: .main)
+            .activationRequest(forExtensionWithIdentifier: dextIdentifier, queue: .main)
         request.delegate = self
         OSSystemExtensionManager.shared.submitRequest(request)
 

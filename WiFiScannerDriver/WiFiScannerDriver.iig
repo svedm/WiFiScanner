@@ -26,6 +26,7 @@ protected:
     kern_return_t closeDevice() LOCALONLY;
     kern_return_t writeToPipe(OSData *data) LOCALONLY;
     kern_return_t readFromPipe(IOMemoryDescriptor* buffer, uint32_t* bytesTransferred) LOCALONLY;
+    kern_return_t readFromPipeAsync(IOMemoryDescriptor *buffer, OSAction *completion) LOCALONLY;
     uint16_t getMaxPacketSize() LOCALONLY;
 };
 

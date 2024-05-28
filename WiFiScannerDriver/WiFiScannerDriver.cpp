@@ -156,6 +156,19 @@ kern_return_t WiFiScannerDriver::readFromPipe(IOMemoryDescriptor* buffer, uint32
     return ret;
 }
 
+kern_return_t WiFiScannerDriver::readFromPipeAsync(IOMemoryDescriptor *buffer, OSAction *completion)
+{
+    kern_return_t ret = kIOReturnSuccess;
+
+    uint64_t bufferLength = 0;
+    buffer->GetLength(&bufferLength);
+
+    ret = ivars->inPipe->AsyncIO(buffer, (uint32_t)bufferLength, completion, 1000 * 3);
+
+    return ret;
+}
+
+
 uint16_t WiFiScannerDriver::getMaxPacketSize()
 {
     return ivars->inMaxPacketSize;

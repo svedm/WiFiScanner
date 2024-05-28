@@ -19,6 +19,7 @@ struct WiFiScannerDriverClient_IVars {
     IOBufferMemoryDescriptor* buffer = nullptr;
     size_t counter = 0;
     uint16_t maxPacketSize = 64;
+    OSAction* readCompletionCallback = nullptr;
 
     WiFiScannerDriver* driver = nullptr;
 };
@@ -39,10 +40,17 @@ kern_return_t IMPL(WiFiScannerDriverClient, Start)
 
     kern_return_t ret = Start(provider, SUPERDISPATCH);
 
+    if (ret != kIOReturnSuccess) {
+        IOLog("Start failed with %s", StringFromReturn(ret));
+        return ret;
+    }
+
     ivars->driver = OSDynamicCast(WiFiScannerDriver, provider);
 
     ivars->driver->openDevice();
     ivars->maxPacketSize = ivars->driver->getMaxPacketSize();
+
+    ret = CreateActionReadComplete(0, &ivars->readCompletionCallback);
 
     return ret;
 }
@@ -63,6 +71,7 @@ void WiFiScannerDriverClient::free(void)
     IOLog("WiFiScannerDriverClient free");
 
     OSSafeReleaseNULL(ivars->callbackAction);
+    OSSafeReleaseNULL(ivars->readCompletionCallback);
     OSSafeReleaseNULL(ivars->buffer);
     OSSafeReleaseNULL(ivars->driver);
     IOSafeDeleteNULL(ivars, WiFiScannerDriverClient_IVars, 1);
@@ -163,6 +172,11 @@ void WiFiScannerDriverClient::readResponse()
     readBuffer->release();
 
     callAsyncCompletion(&result);
+}
+
+void IMPL(WiFiScannerDriverClient, ReadComplete)
+{
+    IOLog("Read async complete with %s", StringFromReturn(status));
 }
 
 void WiFiScannerDriverClient::callAsyncCompletion(void* result)

@@ -39,6 +39,7 @@ final class DriverService {
         }
     }
 
+
     init() {
         Self.newDataNotifications.append(readNewData)
     }
